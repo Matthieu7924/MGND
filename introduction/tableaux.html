@@ -361,6 +361,52 @@
         ];
         
         console.log(fruitEtLegumes);
+        fruitEtLegumes.sort();
+        let tabTemp = [];
+        let tabDoublons = [];
+
+        /* 
+        le tableau tabTemp est un fait un tableau dont les clefs sont les nom des fruits plutôt qu'un indice 
+        si la "case" avec une clef n'existe pas, on la crée avec la valeur 1 (le fruit existe une fois)
+        si la "case" avec une clef existe pas, on augmente de 1 sa valeur
+
+        */
+        fruitEtLegumes.forEach(function(value, index){
+            if(tabTemp[value] === undefined ){
+                //console.log(tabTemp[value]);
+                tabTemp[value] = 1;
+            }else{
+                //console.log(tabTemp[value]);
+                tabTemp[value] = tabTemp[value]+1;
+            }
+        });
+
+        /*
+        on vide le tableau de départ
+        */
+        fruitEtLegumes.splice(0, fruitEtLegumes.length);
+        /* 
+        pour chaque fruit (key du tableau) de tabTemp
+        */
+        for(key in tabTemp){
+            /* la "clef" fruit devient une valeur du tableau des fruit */
+            fruitEtLegumes.push(key);
+            /* si la valeur associée à la clef fruit est supérieure à 1, on alimente le tableau des doublons */
+            if(tabTemp[key] > 1){
+                tabDoublons.push([key, tabTemp[key]]);
+            }
+        }
+
+        console.log(tabTemp);
+        console.log(tabDoublons);
+        console.log(fruitEtLegumes);
+
+        /* c'est mieux d'utiliser la classe Map avec la méthode set */
+        let legumeDoublons = new Map();
+        legumeDoublons.set('fraise', 1);
+        legumeDoublons.set('brocoli', 1);
+        
+        console.log(legumeDoublons.get('fraise'));
 
     </script>
 </head>
