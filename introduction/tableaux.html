@@ -176,6 +176,191 @@
         cars.splice(cars.indexOf('Mazda'), 0, extractFirst, extractLast, tabRemoved[0], tabRemoved[1], tabReplaced[0], tabReplaced[1]);
         console.log(cars);
 
+        /* comment copier un tableau */
+
+        /*
+        let cloneCars = cars;
+        console.log(cloneCars);
+
+        cloneCars.pop();
+        console.log(cloneCars);
+        console.log(cars);
+        */ 
+
+        /* slice() */
+        let cloneCars = cars.slice();
+        console.log(cloneCars);
+
+        cloneCars.pop();
+        console.log(cloneCars);
+        console.log(cars);
+
+        /* .sort() */
+        cloneCars.sort();
+        console.log(cloneCars);
+
+        /* 
+        .reverse() 
+        reverse ne tri par, mais inverse les valeur dans les index du tableau :
+        la première valeur devient la dernière, la dernière la première, etc.
+        */
+        cloneCars.reverse();
+        console.log(cloneCars);
+
+        let test = 'olalala';
+        tabTest = test.split('');
+        console.table(tabTest);
+        test = tabTest.sort().reverse().join('');
+        console.log(test);
+
+        carsTest = [ ['Fiat', 1956], ['Kya', 1995], ['Kya', 1990], ['Ford', 1950] ];
+        console.table(carsTest);
+        carsTest.sort();
+        console.table(carsTest);
+
+        /* les tableaux à 2 voir 3 dimension n'existe pas vraiment en JS */
+        let tab2d = [ ['a', 'b', 'c'], [12,13,12,15,14], [10, 23, 56, 4] ];
+        console.table(tab2d);
+        /* afficher  */
+        console.log(tab2d[1][1]);
+        /* 
+        dans des langages compilé du type c++ ou java, les tableau à deux dimension sont réels et typés 
+        int tab[10] //un tableau en c++
+        int tab2d[5,5] // un tableau à 2 dimension d'entier, 5 lignes, 5 colonnes
+        */
+
+        /* créer une matrice devient un peu galère */
+        let matrice = [
+            [1,  2,  3,  4,  5 ],
+            [12, 14, 75, 56, 42]
+        ];
+
+        /* pour parcourir la matrice */
+        console.log('--- parcourir la matrice "2d" ---------');
+        for(let value of matrice){
+            let line = '';
+            for(subValue of value){
+                line += subValue + ' ';
+                //console.log(subValue);
+            }
+            console.log(line);
+        }
+
+        console.log('--- parcourir la matrice "2d" ---------');
+        matrice.map(function(value, index){
+            value.map(function(subValue, subIndex){
+                console.log(`X : ${index}, Y : ${subIndex} => ${subValue}`);
+            });
+        });
+
+        /* retrouver une ou des valeurs dans un tableau */
+        /* .find() => retourne la première occurence dans un tableau */
+
+        console.log('--------- .find() ------------');
+        let arrayNum = [5, 8, 12, 130, 5, 3, 44];
+        let found = arrayNum.find(function(element){
+            return 20 < element;
+            /*
+            if(20 < element){
+                return element;
+            }
+            */
+        });
+
+        console.log(found);
+
+        /* pour récupérertous les éléments correpsondant à une condition .filter() */
+        let foundAll = arrayNum.filter(function(element){
+            return 20 < element;
+        });
+
+        console.table(foundAll);
+        
+        /* opérateur arrow */
+        /*
+        function(){
+            //code
+        }
+        devient 
+        ()=>{
+            //code
+        }
+
+        function(variable){
+            //code
+        }
+        devient 
+        (variable)=>{
+            //code
+        }
+
+        function(variable){
+            return variable*2;
+        }
+        devient 
+        (variable)=>variable*2;
+
+        function(variable){
+            return variable;
+        }
+        devient 
+        (variable)=>variable;
+        
+        */
+        let foundAll2 = arrayNum.filter((element)=> 20 < element);
+
+        /*
+        les fonction de rappel (callback functions) ou fonctions 
+        anonymes génèrent des conséquences quand elles sont trop imbriqués 
+        c'est à surveiller lors de l'utilisation du this d'un objet 
+        dans les méthodes de l'objet
+        */
+
+        console.log('---------------- les conséquences --------------');
+        let monObjet = {
+            numbers: [1, 2, 56, 13, 123],
+            affTab: function(){
+                console.log(this);
+                let _this = this;
+                this.numbers.forEach(function(value){
+                    console.log(this);
+                    console.log(_this);
+                });
+            },
+            affTab2: function(){
+                console.log(this);
+                let _this = this;
+                this.numbers.forEach((value)=>{
+                    console.log(this);
+                });
+            }
+        };
+
+        monObjet.affTab();
+        monObjet.affTab2();
+
+        /* 
+        créer un tableau avec des fruits et des légumes, avec deux fruits ou légumes en doublons 
+        modifier le tableau pour que : 
+            - les fruits et légumes soient triés par ordre alphabétiques
+            - que les doublons soient supprimés du tableau
+            - qu'on affiche un tableau des doublons et le nombre d'occurence de chaque doublons
+        */
+
+        let fruitEtLegumes = [
+            'fraise',
+            'bananes',
+            'mangue',
+            'choux',
+            'mangue',
+            'courgette',
+            'fraise',
+            'brocoli', 
+            'haricot',
+            'mangue'
+        ];
+        
+        console.log(fruitEtLegumes);
 
     </script>
 </head>
