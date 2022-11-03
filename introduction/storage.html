@@ -91,6 +91,49 @@
                 dataLocal.innerHTML = '<b>Le local a été effacée</b>';
             });
 
+            /* Les cookies */
+            /*
+            pour créer un cookie, on va directement écrire le cookie, savelur, sa date d'expiration, le niveau de samesite et la securité dans 
+            la liste des cookie : document.cookie
+            */
+
+            /* créer la date d'expiration */
+            let dateNow = new Date();
+
+            console.log(dateNow);
+            console.log(dateNow.toLocaleString());
+            console.log(dateNow.toUTCString());
+            console.log(dateNow.getFullYear());
+            console.log(dateNow.getMonth()+1);
+            console.log(dateNow.getTime());
+            console.log(dateNow.getTime() + (1 * 24 * 60 * 60 * 1000));
+            let dateEnd = new Date();
+            dateEnd.setTime(dateEnd.getTime() + (1 * 24 * 60 * 60 * 1000) + (1000 * 60 * 60) );
+            console.log(dateEnd);
+            console.log(typeof dateEnd);
+            console.log(typeof dateNow);
+
+            /* créer le cookie qui expire à DateEnd */
+            document.cookie = `unCookie=Test; expires=${dateEnd.toUTCString()}; Samesite=Strict; Secure`;
+
+            /* effacer un cookie */
+            let anteDate = new Date();
+            anteDate.setTime(anteDate.getTime() - (1000 * 60 * 60 * 24));
+            console.log(anteDate);
+
+            //document.cookie = `unCookie=Test; expires=${anteDate.toUTCString()}; Samesite=Strict; Secure`;
+
+            /* création fonction setCookie (crée ou détruit un cookie) */
+            /* création fonction getCookie (récupère un cookie s'il existe) */
+
+            setCookie('test2', 'coucou', 1);
+            //setCookie('test2');
+
+            console.log(document.cookie);
+            console.log(getCookie('test2'));
+
+            
+
         });
     </script>
 </head>
