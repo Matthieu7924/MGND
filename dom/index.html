@@ -11,8 +11,70 @@
     <script>
         
         loaded(function () {
-            
+            let mainArticle = qS('body > main > section > article > main');
+            console.log(mainArticle);
+            console.log(mainArticle.baseURI);
+            console.log(mainArticle.childNodes);
+            /*
+            mainArticle.childNodes.forEach(noeudEnfant => {
+                console.log(noeudEnfant);
+            });
+            */
+
+            let headingsArticle = qSAll('.titreDeChapitre');
+            console.log(headingsArticle);
+            let test = document.getElementsByClassName('titreDeChapitre');
+            //console.log(test);
+
+            headingsArticle.forEach((title, key, tab) => {
+                title.addEventListener('click', function(){
+                    console.log( `
+title.innerText : ${this.innerText},
+key             : ${key},
+tab             : ${tab},
+this.nodeName   : ${this.nodeName},
+                    ` );
+                });
+            });
+
+            qS('body').addEventListener('click', (event)=>{
+                //console.log(event);
+                qS('#ouEstLeCLic').innerText = `Coordonnées du clic : 
+X : ${event.offsetX}
+Y : ${event.offsetY}
+Cible du clic : ${event.target}
+                `;
+            });
+
+            let allP = qSAll('p:not(#special)');
+            console.log(allP);
+
+            allP.forEach(paragraphe=>{
+                paragraphe.addEventListener('click', function(){
+                    qS('#showP').innerText = this.innerHTML;
+                    this.childNodes.forEach( (value)=>{
+                        console.log(value);
+                    } );
+                });
+            });
+
+            let imgOver = qS('#imgOver');
+
+            imgOver.addEventListener('mouseover', function(){
+                this.setAttribute('src', '../images/pip-boy-thumb-up.png');
+                this.setAttribute('alt', 'Pip boy avec le bras droit');
+                this.parentNode.childNodes.forEach( figureChild=>{
+                    if('FIGCAPTION' === figureChild.nodeName){
+                        figureChild.innerHTML = 'Pip boy avec le bras droit';
+                    }
+                });
+            });
+
+            /* mini exo : quand le pointeur soort de l'image */
+
         });
+
+
     </script>
 </head>
 
