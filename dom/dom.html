@@ -9,8 +9,67 @@
     <script src="../js/bootstrap.bundle.js"></script>
     <script src="../js/script.js"></script>
     <script>
-        
+
         loaded(function () {
+            /* 
+                pour créer un élément on utilise la méthode de document .createElement(<nom de l'élément>);
+                pour ajouter des attributs à cet éléments 
+                element.setAttribute(<attribut a ajouter>, <valeur de l'attribut>) 
+            */
+
+            var numSpan = 1;
+            let test = qS('#test');
+
+            qS('.creerDom').addEventListener('click', function(){
+                /*
+                let divTest = document.createElement('div');
+                divTest.setAttribute('class', 'alert alert-danger');
+                divTest.setAttribute('data-message', 'coucou');
+                divTest.setAttribute('data-click', 'supprime');
+                divTest.addEventListener('click', function(){
+                    console.log(divTest);
+                });
+                */
+                /*
+                let divTest = cE('div', ['class', 'alert alert-danger'], ['data-message', 'coucou'], ['data-click', 'supprime']);
+                */
+    
+                let options = {
+                    'class': 'alert alert-danger mt-2',
+                    'data-message': 'coucou',
+                    'data-click': 'supprime'
+                };
+                let divTest = cEO('div', options);
+                let contentNode = document.createTextNode('Test');
+                divTest.appendChild(contentNode);
+    
+                qS('#btn').parentNode.appendChild(divTest);
+
+            });
+
+            qS('#addSpan').addEventListener('click', function(){
+                let options = {
+                    'data-test': `${numSpan}`,
+                    'class': 'alert alert-success testSpan col-2',
+                    'role': 'alert'
+                };
+
+                let testSpan = cEO('div', options);
+                let content = document.createTextNode(`Div n° ${numSpan}`);
+
+                testSpan.appendChild(content);
+                testSpan.classList.add('test');
+
+                testSpan.addEventListener('click', function(){
+                    this.remove();
+                    //let allSpanTest = qSAll('')
+                });
+
+                test.appendChild(testSpan);
+
+                numSpan++;
+
+            });
 
         });
 
@@ -43,16 +102,17 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          DOM
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            DOM
                         </a>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="../dom/index.html">Le DOM</a></li>
-                          <li><a class="dropdown-item" href="../dom/dom.html">Créer dans le DOM</a></li>
-                          <li><a class="dropdown-item" href="../dom/css.html">DOM et CSS</a></li>
-                          <li><a class="dropdown-item" href="../dom/dataset.html">Dataset</a></li>
+                            <li><a class="dropdown-item" href="../dom/index.html">Le DOM</a></li>
+                            <li><a class="dropdown-item" href="../dom/dom.html">Créer dans le DOM</a></li>
+                            <li><a class="dropdown-item" href="../dom/css.html">DOM et CSS</a></li>
+                            <li><a class="dropdown-item" href="../dom/dataset.html">Dataset</a></li>
                         </ul>
-                      </li>
+                    </li>
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -65,7 +125,7 @@
         <section class="row">
             <article class="col-lg-12">
                 <header>
-                    <h2>Créer dans le DOM</h2>
+                    <h2 class="creerDom">Créer dans le DOM</h2>
                 </header>
                 <main>
                     <p>

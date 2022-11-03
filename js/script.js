@@ -41,3 +41,27 @@ function getCookie(name){
         }
     }
 }
+
+function cE(element, ...attributes){
+    /*
+    ...attributes => ['attributs', 'valeur de l'attribut'], ['attributs', 'valeur de l'attribut'] ...
+    [['attributs', 'valeur de l'attribut'], ['attributs', 'valeur de l'attribut']]
+    */
+
+    let newElement = document.createElement(element);
+    attributes.forEach(function(tabAttr){
+        console.log(tabAttr);
+        newElement.setAttribute(tabAttr[0], tabAttr[1]);
+    });
+
+    return newElement;
+}
+
+function cEO(element, attributes = {}){
+    let newElement = document.createElement(element);
+    for(let key in attributes){
+        newElement.setAttribute(key, attributes[key]);
+    }
+
+    return newElement;
+}
