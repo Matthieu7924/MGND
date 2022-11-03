@@ -62,7 +62,34 @@
             });
             
             /* localStorage */
+            let btnLocal = qS('#btnLocal');
+            let localUser = qS('#localUser');
+            let dataLocal = qS('#dataLocal');
+            let btnClearLocalItem = qS('#btnClearLocalItem');
+            let btnClearLocal = qS('#btnClearLocal');
+
+            if (localStorage.getItem('localUserName')) {
+                dataLocal.innerHTML = `<b>${localStorage.getItem('localUserName')}</b>`;
+            } else {
+                dataLocal.innerHTML = '<b>Pas de localUserName d\'enregistré</b>';
+            }
+
+            btnLocal.addEventListener('click', function () {
+                if (localUser.value !== '') {
+                    localStorage.setItem('localUserName', localUser.value);
+                    dataLocal.innerHTML = `<b>${localStorage.getItem('localUserName')}</b>`;
+                }
+            });
+
+            btnClearLocalItem.addEventListener('click', function(){
+                localStorage.removeItem('localUserName');
+                dataLocal.innerHTML = '<b>Pas de localUserName d\'enregistré</b>';
+            });
             
+            btnClearLocal.addEventListener('click', function(){
+                localStorage.clear();
+                dataLocal.innerHTML = '<b>Le local a été effacée</b>';
+            });
 
         });
     </script>
