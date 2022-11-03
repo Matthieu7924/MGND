@@ -48,6 +48,7 @@
                 if (sessionUser.value !== '') {
                     sessionStorage.setItem('sessionUserName', sessionUser.value);
                     dataSession.innerHTML = `<b>${sessionStorage.getItem('sessionUserName')}</b>`;
+                    sessionUser.value = ''
                 }
             });
 
@@ -78,6 +79,7 @@
                 if (localUser.value !== '') {
                     localStorage.setItem('localUserName', localUser.value);
                     dataLocal.innerHTML = `<b>${localStorage.getItem('localUserName')}</b>`;
+                    localUser.value = '';
                 }
             });
 
@@ -132,7 +134,49 @@
             console.log(document.cookie);
             console.log(getCookie('test2'));
 
-            
+            /* le cookie dans le formulaire */
+            /*
+            cookieValue
+            btnCookieValue
+            btnEmptyCookieValue
+            btnClearCookie
+            dataCookieValue
+            */
+
+            let btnCookieValue = qS('#btnCookieValue');
+            let cookieValue = qS('#cookieValue');
+            let dataCookieValue = qS('#dataCookieValue');
+            let btnEmptyCookieValue = qS('#btnEmptyCookieValue');
+            let btnClearCookie = qS('#btnClearCookie');
+
+            if(getCookie('monCookie') || getCookie('monCookie') === ''){
+                dataCookieValue.innerHTML = `<b>monCookie : ${getCookie('monCookie')}</b>`;
+            }else{
+                dataCookieValue.innerHTML = `<b>Pas de cookie 'monCookie' d'enregistré</b>`;
+            }
+
+            btnCookieValue.addEventListener('click', ()=>{
+                if(cookieValue.value !== ''){
+                    setCookie('monCookie', cookieValue.value, 1);
+                    dataCookieValue.innerHTML = `<b>monCookie : ${getCookie('monCookie')}</b>`;
+                    //console.log(document.cookie);
+                    cookieValue.value = '';
+                }
+            });
+
+            /* vider le cookie monCookie */
+            btnEmptyCookieValue.addEventListener('click', ()=>{ 
+                setCookie('monCookie', '', 1);
+                dataCookieValue.innerHTML = `<b>monCookie : ${getCookie('monCookie')}</b>`;
+                //console.log(document.cookie);
+            });
+
+            /* supprimer le cookie monCookie */
+            btnClearCookie.addEventListener('click', ()=>{ 
+                setCookie('monCookie', '', -1);
+                dataCookieValue.innerHTML = `<b>Pas de cookie 'monCookie' d'enregistré</b>`;
+                console.log(document.cookie);
+            });
 
         });
     </script>

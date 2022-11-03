@@ -32,10 +32,10 @@ function setCookie(name, value = '', days = -1){
  */
 function getCookie(name){
     let tabCookie = document.cookie.split('; ');
-    console.log(tabCookie);
+    //console.log(tabCookie);
     for(cookie of tabCookie){
         let tabValue = cookie.split('=');
-        console.log(tabValue);
+        //console.log(tabValue);
         if(tabValue[0] === name){
             return tabValue[1];
         }
