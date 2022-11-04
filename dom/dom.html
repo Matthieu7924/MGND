@@ -80,18 +80,6 @@
 
                 console.log(item.value);
 
-                
-            
-
-                // addItemBtn.addEventListener('click', function(){
-                //     alert("Hello!"),false
-                // });
-
-                //    addItemBtn.addEventListener('click', function(){
-                //     let contentNode = document.createTextNode(item.value);
-                //     divList.appendChild(contentNode);
-                // });
-
                 addItemBtn.addEventListener('click', function(){
                     const li = document.createElement("li");
                     li.textContent= item.value;
@@ -99,17 +87,24 @@
                 });
 
 
+                document.addEventListener('keyup', function(event) {
+                if (event.code == 'Enter') {
+                    const li = document.createElement("li");
+                    li.textContent= item.value;
+                    toDoList.appendChild(li);
+                    item.value='';
+                }
+                });
+
+                li.addEventListener('click', function(){
+                    this.remove();
+                })
 
 
 
 
-                /*
-                pour vérifier si le git a fonctionné
-                */
 
-                /*
-                2ème vérif
-                */
+           
 
 
         });
